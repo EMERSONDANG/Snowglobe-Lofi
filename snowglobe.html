@@ -55,6 +55,7 @@
         // load the json file into the particles var and perform actions
         tsParticles.loadJSON('particles', 'particles.json')
             .then(function () {
+                // for initial set up, do not display anything 
                 particles = tsParticles.domItem(0);
                 particles.pause();
 
@@ -62,6 +63,7 @@
                     shakeItUp();
                 })
 
+                // for shaking the snowglobe based on acceleration method
                 window.addEventListener("devicemotion", (event) => {
                     const acceleration = calculateAcceleration(event);
 
