@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="snowglobe.css">
+</head>
+<body>
+    <!-- The source for the json file -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
+    
+    <div id="snowglobe">
+
+        <div id="particles">
+
+        </div>
+
+        <div id="ground">
+
+
+        </div>
+
+    </div>
+
+    <audio id="music">
+        <source src="snowglobeLofi.mp3"></source>
+    </audio>
+
+    <!-- script for the snowglobe -->
+    <script>
+        let globe = document.getElementById("snowglobe");
+        let music = document.getElementById("music");
+
+        let particles;
+
+        function calculateAcceleration(event) {
+            const {x, y, z} = event.accelerationIncludingGravity;
+
+            const accelerationMagnitude = Math.sqrt(x * x + y * y + z * z);
+
+            return accelerationMagnitude;
+        }
+
+        function shakeItUp() {
+            particles.play();
+            music.play();
+
+            globe.classList.add("shake");
+            /* when we shake it, stop shaking after 1100 ms, so remove from div */
+            setTimeout(() => {globe.classList.remove("shake")}, 1100);
+        }
+
+
+        // load the json file into the particles var and perform actions
+        tsParticles.loadJSON('particles', 'particles.json')
+            .then(function () {
+                particles = tsParticles.domItem(0);
+                particles.pause();
+
+                globe.addEventListener('click', () => {
+                    shakeItUp();
+                })
+
+                window.addEventListener("devicemotion", (event) => {
+                    const acceleration = calculateAcceleration(event);
+
+                    if (acceleration > 23) {
+                        shakeItUp();
+                    }
+                })
+            })
+    </script>
+</body>
+</html>

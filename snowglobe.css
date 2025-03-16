@@ -1,0 +1,91 @@
+/* reset spacing in entire page */
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* hiding scroll bars */
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* styling the body tag i*/
+body {
+    /* make items in the body container to be flexible, column aligned */
+    display: flex;
+    flex-direction: column;
+
+    /* width and height to be size of user screen*/
+    width: 100vw;
+    height: 100vh;
+
+    /* center items vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("lofiWallpaper.png");
+    background-size: cover;
+}
+
+/* style the snowglobe div container */
+div#snowglobe {
+    width: 85vmin;
+    height: 85vmin;
+
+    border-radius: 100%;
+    overflow: hidden;
+
+    margin: auto;
+
+    /* add a glow */
+    box-shadow: 0px 0px 20px 35px #FFFFFF05;
+
+    background: linear-gradient(4deg, rgba(134, 100, 0, 1) 0%, rgba(121, 9, 9, 1) 32%, rgba(4, 0, 70, 1) 100%);
+
+}
+
+div#particles {
+    /* sky takes up the rest */
+    height: 75%;
+    width: 100%;
+}
+
+div#ground {
+    /* ground is 25% of the entire image */
+    height: 25%;
+    width: 100%;
+    background: #bebebe;
+}
+
+/* for the shake animation*/
+@keyframes shake {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(15deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+
+
+
+}
+
+.shake {
+    animation: shake 1s;
+}
